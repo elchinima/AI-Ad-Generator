@@ -1,121 +1,83 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import AdForm from './components/AdForm.jsx'
+import AdResult from './components/AdResult.jsx'
 import './App.css'
 
+const initialResult = {
+  shortAdText:
+    'Enter a business name and product details to generate Instagram ad copy.',
+  callToAction: 'Generate ad',
+  hashtags: ['#InstagramAd', '#SmallBusiness', '#Marketing'],
+}
+
+async function readJsonResponse(response) {
+  const responseText = await response.text()
+
+  if (!responseText) {
+    return {}
+  }
+
+  try {
+    return JSON.parse(responseText)
+  } catch {
+    throw new Error('The server returned an invalid JSON response.')
+  }
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [result, setResult] = useState(initialResult)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  async function handleGenerate(formData) {
+    setIsLoading(true)
+    setError('')
+
+    try {
+      const response = await fetch('/api/ads/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const payload = await readJsonResponse(response)
+
+      if (!response.ok) {
+        throw new Error(payload.message || 'Could not generate ad copy.')
+      }
+
+      if (!payload.ad) {
+        throw new Error('The server response did not include generated ad data.')
+      }
+
+      setResult(payload.ad)
+    } catch (requestError) {
+      setError(requestError.message)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
+    <main className="app-shell">
+      <section className="workspace" aria-label="AI ad generator">
+        <div className="intro">
+          <p className="eyebrow">AI Ad Generator</p>
+          <h1>Generate Instagram ad copy in seconds.</h1>
           <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+            Turn business and product notes into a ready-to-review Instagram
+            ad with short copy, a CTA, and at least three hashtags.
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+        <div className="generator-grid">
+          <AdForm onGenerate={handleGenerate} isLoading={isLoading} />
+          <AdResult result={result} isLoading={isLoading} error={error} />
         </div>
       </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    </main>
   )
 }
 

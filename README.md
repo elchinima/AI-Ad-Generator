@@ -1,16 +1,166 @@
-# React + Vite
+![Animated demo mode preview](public/demo-mode.svg)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# AI Ad Generator 🚀
 
-Currently, two official plugins are available:
+AI Ad Generator is a simple React + Node.js app that creates Instagram ad copy from business details. It returns a short ad text, a CTA, and at least three hashtags in the selected language.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+- 🧠 AI-powered Instagram ad generation
+- 📝 Business name and product/service inputs
+- 🌍 Language selector for English, Russian, and Azerbaijani
+- 🎯 Audience, goal, and tone controls
+- 📣 Short ad text, CTA, and hashtag output
+- 🔁 Demo fallback mode when no API key is configured
+- 🎨 Animated demo-mode SVG asset for README preview
+- 📱 Responsive interface
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🧰 Tech Stack
 
-## Expanding the ESLint configuration
+- ⚛️ Frontend: React + Vite
+- 🟩 Backend: Node.js + Express
+- 🤖 AI providers: OpenAI, Claude, and Gemini
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📁 Project Structure
+
+```text
+.
+├── public
+│   └── demo-mode.svg
+├── server
+│   ├── controllers
+│   │   └── adsController.js
+│   ├── services
+│   │   └── aiService.js
+│   ├── app.js
+│   ├── .env
+│   └── package.json
+└── src
+    ├── components
+    │   ├── AdForm.jsx
+    │   └── AdResult.jsx
+    ├── App.jsx
+    └── App.css
+```
+
+## ⚙️ Environment Variables
+
+Configure the backend locally in `server/.env`.
+
+```env
+PORT=5000
+AI_PROVIDER=openai
+
+OPENAI_API_KEY=
+OPENAI_MODEL=gpt-4.1-mini
+
+CLAUDE_API_KEY=
+CLAUDE_MODEL=claude-3-5-haiku-latest
+
+GEMINI_API_KEY=
+GEMINI_MODEL=gemini-3.5-flash
+```
+
+Set `AI_PROVIDER` to one of:
+
+- `openai`
+- `claude`
+- `gemini`
+
+If no API key is provided, the app still works in demo mode.
+
+## ▶️ Run Locally
+
+Install frontend dependencies:
+
+```bash
+npm install
+```
+
+Install backend dependencies:
+
+```bash
+npm --prefix server install
+```
+
+Start the React app:
+
+```bash
+npm run dev
+```
+
+Start the Node server in a second terminal:
+
+```bash
+npm run dev:server
+```
+
+Open the app:
+
+```text
+http://localhost:5173
+```
+
+## 🔌 API
+
+Generate an ad:
+
+```http
+POST /api/ads/generate
+```
+
+Request body:
+
+```json
+{
+  "businessName": "Cafe Baku",
+  "audience": "young professionals",
+  "language": "english",
+  "goal": "awareness",
+  "tone": "friendly",
+  "productInfo": "Fresh breakfast and specialty coffee near offices."
+}
+```
+
+Supported `language` values:
+
+- `english`
+- `russian`
+- `azerbaijani`
+
+Response:
+
+```json
+{
+  "ad": {
+    "shortAdText": "Cafe Baku helps young professionals increase brand awareness...",
+    "callToAction": "Order now",
+    "isDemoMode": true,
+    "hashtags": ["#InstagramAd", "#BusinessGrowth", "#LimitedOffer"]
+  }
+}
+```
+
+## ✅ Checks
+
+Run lint:
+
+```bash
+npm run lint
+```
+
+Build the frontend:
+
+```bash
+npm run build
+```
+
+## 🖼️ Demo SVG
+
+The animated demo-mode graphic lives at:
+
+```text
+public/demo-mode.svg
+```
+
+It is a README/demo asset and is not rendered inside the app UI.
