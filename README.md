@@ -1,4 +1,6 @@
-![Animated demo mode preview](public/demo-mode.svg)
+<p align="center">
+  <img src="public/demo-mode.svg" alt="Animated demo mode preview" width="676" />
+</p>
 
 # AI Ad Generator 🚀
 
@@ -155,12 +157,4 @@ Build the frontend:
 npm run build
 ```
 
-## 🖼️ Demo SVG
-
-The animated demo-mode graphic lives at:
-
-```text
-public/demo-mode.svg
-```
-
-It is a README/demo asset and is not rendered inside the app UI.
+Note: This project was tested only with the Gemini API, and the deployed version works with Gemini.

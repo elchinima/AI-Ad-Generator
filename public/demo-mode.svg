@@ -1,52 +1,53 @@
-<svg width="520" height="180" viewBox="0 0 520 180" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<svg width="676" height="234" viewBox="0 0 676 234" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Demo mode illustration</title>
   <desc id="desc">Animated card showing a demo AI ad generation state.</desc>
   <defs>
-    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#E4E0D7" stroke-width="1"/>
+    <pattern id="grid" width="31.2" height="31.2" patternUnits="userSpaceOnUse">
+      <path d="M 31.2 0 L 0 0 0 31.2" fill="none" stroke="#E4E0D7" stroke-width="1.3"/>
     </pattern>
     <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#1F6B68" stop-opacity="0"/>
       <stop offset="0.5" stop-color="#1F6B68" stop-opacity="0.22"/>
       <stop offset="1" stop-color="#1F6B68" stop-opacity="0"/>
     </linearGradient>
-    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#2F3E46" flood-opacity="0.12"/>
+    <filter id="softShadow" x="-18%" y="-24%" width="136%" height="148%">
+      <feDropShadow dx="0" dy="13" stdDeviation="17" flood-color="#2F3E46" flood-opacity="0.14"/>
     </filter>
   </defs>
 
-  <rect width="520" height="180" rx="8" fill="#F7F5F0"/>
-  <rect width="520" height="180" rx="8" fill="url(#grid)" opacity="0.8"/>
+  <rect width="676" height="234" rx="10.4" fill="#F7F5F0"/>
+  <rect width="676" height="234" rx="10.4" fill="url(#grid)" opacity="0.72"/>
 
   <g filter="url(#softShadow)">
-    <rect x="34" y="30" width="452" height="120" rx="8" fill="#FFFEFB" stroke="#D8D5CB"/>
-    <rect x="34" y="30" width="452" height="34" rx="8" fill="#FFFFFF" stroke="#D8D5CB"/>
-    <path d="M34 64H486" stroke="#D8D5CB"/>
+    <rect x="44.2" y="39" width="587.6" height="156" rx="10.4" fill="#FFFEFB" fill-opacity="0.86" stroke="#D8D5CB" stroke-width="1.3"/>
+    <rect x="44.2" y="39" width="587.6" height="44.2" rx="10.4" fill="#FFFFFF" fill-opacity="0.72" stroke="#D8D5CB" stroke-width="1.3"/>
+    <rect x="53" y="48" width="570" height="138" rx="8" fill="#FFFFFF" opacity="0.16"/>
+    <path d="M44.2 83.2H631.8" stroke="#D8D5CB" stroke-width="1.3"/>
   </g>
 
-  <text x="56" y="52" fill="#17202C" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800">DEMO MODE</text>
-  <text x="384" y="52" fill="#1F6B68" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800">READY</text>
+  <text x="72.8" y="67.6" fill="#17202C" font-family="Segoe UI, Arial, sans-serif" font-size="18.2" font-weight="800">DEMO MODE</text>
+  <text x="499.2" y="67.6" fill="#1F6B68" font-family="Segoe UI, Arial, sans-serif" font-size="15.6" font-weight="800">READY</text>
 
-  <rect x="56" y="84" width="235" height="9" rx="4.5" fill="#334155" opacity="0.2"/>
-  <rect x="56" y="102" width="310" height="9" rx="4.5" fill="#334155" opacity="0.16"/>
-  <rect x="56" y="120" width="185" height="9" rx="4.5" fill="#334155" opacity="0.14"/>
+  <rect x="72.8" y="109.2" width="343" height="11.7" rx="5.85" fill="#334155" opacity="0.2"/>
+  <rect x="72.8" y="132.6" width="442" height="11.7" rx="5.85" fill="#334155" opacity="0.16"/>
+  <rect x="72.8" y="156" width="291" height="11.7" rx="5.85" fill="#334155" opacity="0.14"/>
 
-  <rect x="388" y="86" width="64" height="28" rx="14" fill="#F0B84F"/>
-  <text x="404" y="104" fill="#17202C" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="900">CTA</text>
+  <rect x="504.4" y="111.8" width="83.2" height="36.4" rx="18.2" fill="#F0B84F"/>
+  <text x="525.2" y="135.2" fill="#17202C" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="900">CTA</text>
 
   <g>
-    <circle cx="344" cy="119" r="5" fill="#1F6B68">
+    <circle cx="447.2" cy="154.7" r="6.5" fill="#1F6B68">
       <animate attributeName="opacity" values="0.35;1;0.35" dur="1.2s" repeatCount="indefinite"/>
     </circle>
-    <circle cx="364" cy="119" r="5" fill="#1F6B68">
+    <circle cx="473.2" cy="154.7" r="6.5" fill="#1F6B68">
       <animate attributeName="opacity" values="0.35;1;0.35" dur="1.2s" begin="0.15s" repeatCount="indefinite"/>
     </circle>
-    <circle cx="384" cy="119" r="5" fill="#1F6B68">
+    <circle cx="499.2" cy="154.7" r="6.5" fill="#1F6B68">
       <animate attributeName="opacity" values="0.35;1;0.35" dur="1.2s" begin="0.3s" repeatCount="indefinite"/>
     </circle>
   </g>
 
-  <rect x="-160" y="30" width="120" height="120" fill="url(#shine)">
-    <animate attributeName="x" values="-160;560" dur="3.2s" repeatCount="indefinite"/>
+  <rect x="-208" y="39" width="172" height="156" fill="url(#shine)" opacity="0.9">
+    <animate attributeName="x" values="-208;728" dur="3.2s" repeatCount="indefinite"/>
   </rect>
 </svg>
